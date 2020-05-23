@@ -222,11 +222,13 @@ main:
 		bx lr
 		
 
+.data
+.align 2
 
 @ VARIABLES
 
 puntajeP1: 			.word 0
-puntajeP2			.word 0
+puntajeP2:			.word 0
 cantPalablas:		.word 11
 recibido:			.asciz "                               "
 
@@ -243,31 +245,31 @@ ganador:			.asciz "Has ganado!"
 
 @ PALABRAS DESORDENADAS
 
-palDes0:			.word "saotmasc"
-palDes1:			.word "almeaocn"
-palDes2:			.word "eeonrg"
-palDes3:			.word "ponsmsi"
-palDes4:			.word "vciorrounsa"
-palDes5:			.word "tspunea"
-palDes6:			.word "trsafu"
-palDes7:			.word "arb"
-palDes8:			.word "divdana"
-palDes9:			.word "uoincgraad"
-palDes10:			.word "lowelenah"
+palDes0:			.asciz "saotmasc"
+palDes1:			.asciz "almeaocn"
+palDes2:			.asciz "eeonrg"
+palDes3:			.asciz "ponsmsi"
+palDes4:			.asciz "vciorrounsa"
+palDes5:			.asciz "tspunea"
+palDes6:			.asciz "trsafu"
+palDes7:			.asciz "arb"
+palDes8:			.asciz "divdana"
+palDes9:			.asciz "uoincgraad"
+palDes10:			.asciz "lowelenah"
 
 @ PALABRAS ORDENADAS
 
-palabra0:			.word "mascotas"
-palabra1:			.byte "camaleon"
-palabra2:			.byte "genero"
-palabra3:			.byte "simpson"
-palabra4:			.byte "coronavirus"
-palabra5:			.byte "peanuts"
-palabra6:			.byte "frutas"
-palabra7:			.byte "bar"
-palabra8:			.byte "navidad"
-palabra9:			.byte "graduacion"
-palabra10:			.byte "halloween"
+palabra0:			.asciz "mascotas"
+palabra1:			.asciz "camaleon"
+palabra2:			.asciz "genero"
+palabra3:			.asciz "simpson"
+palabra4:			.asciz "coronavirus"
+palabra5:			.asciz "peanuts"
+palabra6:			.asciz "frutas"
+palabra7:			.asciz "bar"
+palabra8:			.asciz "navidad"
+palabra9:			.asciz "graduacion"
+palabra10:			.asciz "halloween"
 
 @ LARGO PALABRAS
 largo0:				.word 8
@@ -304,8 +306,8 @@ bananas:			.asciz "   _\n _ \’-_,#\n_\’--’,’`|\n\`---`  /\n `----’`"
 vino:				.asciz " _____\n/.---.\\n|`````|\n\     /\n `-.-’\n   |\n __|__ "
 cerveza:			.asciz ".~~~~.\ni====i_\n|cccc|_)\n|cccc|\n`-==-’"
 mania:				.asciz " ,+.\n((|))\n )|(\n((|))\n `-’"
-almendra:			.asciz " ,+.\n//|\\\n|||||\n\\|//\n `+’"
-pino:				.asciz "    \|/\n   --0--\n    /|\\n   //|\\\n  ///|\\\\n ////|\\\\\n/////|\\\\\\n0 0 ||| 0 0\n  __|||__"
+almendra:			.asciz " ,+.\n//|\\\n|||||\n\\|//\n `+’ "
+pino:				.asciz "    \|/\n   --0--\n    /|\\n   //|\\\n  ///|\\\\n ////|\\\\\n/////|\\\\\\n0 0 ||| 0 0\n  __|||__ "
 jengibre:			.asciz "   ,-.\n _(*_*)_\n\n  / o \\n (_/ \_)"
 birrete:			.asciz "  ,-‘’-.\n,‘  .----.\n`.     ,’ )\n |`-.-’| #\n  `---’"
 diploma:			.asciz " _________\n(@)__))___)\n     \\\n      ^"
