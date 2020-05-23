@@ -2,9 +2,9 @@
 @ ***************************************
 @ USO:
 @****************************************
-@ AUTH: Christian Perez 19710
-@ AUTH:	Javier Hernandez
-@ AUTH:	Edman Cotta
+@ AUTH: Christian Pérez 19710
+@ AUTH: Javier Hernández 19202
+@ AUTH: Edman Cotta
 @****************************************
 
 @INICIALIZACIÓN
@@ -15,7 +15,7 @@
 
 @CUERPO DEL PROGRAMA
 main:
-stmfd sp!, {lr}		@@ Punto de retorno LR = SP
+	stmfd sp!, {lr}		@@ Punto de retorno LR = SP
 	
 	/* MENSAJE DE BIENVENIDA */
 	ldr r0,=titulo
@@ -23,137 +23,204 @@ stmfd sp!, {lr}		@@ Punto de retorno LR = SP
 	ldr r0,=bienvenida
 	bl puts
 	
-	mov r8, #0			@PUNTUACION JUGADOR #1
-	mov r9, #0			@PUNTUACION JUGADOR #2
+	mov r11, #0 @Puntaje
+	mov r10, #0 @Interador
 	
-randomNum:
-		ldr r12,=cantPalabras
-ldr r12,[r12] 
-		bl random
-		cmp r12, #0
-		beq conjunt0
-		cmp r12,#1
-		beq conunto1
-cmp r12, #2
+	menu:
+		cmp r10, #0
+		beq conjunto0
+		cmp r10, #1
+		beq conjunto1
+		cmp r10, #2
 		beq conjunto2
-		cmp r12,#3
-		beq conunto3
-cmp r12, #4
+		cmp r10, #3
+		beq conjunto3
+		cmp r10, #4
 		beq conjunto4
-		cmp r12,#5
-		beq conunto5
-cmp r12, #6
+		cmp r10, #5
+		beq conjunto5
+		cmp r10, #6
 		beq conjunto6
-		cmp r12,#7
-		beq conunto7
-cmp r12, #8
-		beq conjunto8
-		cmp r12,#9
-		beq conunto9
-cmp r12, #10
-		beq conjunto10
 		
-		b error
+		mov r10, #0
+		
+		b menu
+		
 	
-	conjunto1:
+	conjunto0:
 		
-		ldr r0, =gato
+		add r10, r10, #1
+		ldr r0,=perro
 		bl puts
-		ldr r0, =perro
+		ldr r0,=gato
+		bl puts
+		ldr r0,=instruccion
 		bl puts
 		ldr r0,=palDes0
 		bl puts
 		
-		ldr r0,=
-		ldr r1,=recibido
-		bl scanf
-		ldr r10,= palabra0
-		b comparar
-
-	conjunto2:
-
-		ldr r0, =cama
+		ldr r4,= palabra0
+		ldr r5,=largo0
+		ldr r5,[r5]
+		
+		b lectura
+		
+	conjunto1:
+	
+		add r10, r10, #1
+		ldr r0,=cama
 		bl puts
-		ldr r0, =leon
+		ldr r0,=leon
+		bl puts
+		ldr r0,=instruccion
 		bl puts
 		ldr r0,=palDes1
 		bl puts
 		
-		ldr r0,=
-		ldr r1,=recibido
-		bl scanf
-		ldr r10,= palabra1
-		b comparar
-
-	conjunto3:
-		ldr r0, =masculino
+		ldr r4,= palabra1
+		ldr r5,=largo1
+		ldr r5,[r5]
+		
+		b lectura
+	
+	conjunto2:
+	
+		add r10, r10, #1
+		ldr r0,=masculino
 		bl puts
-		ldr r0, =femenino
+		ldr r0,=femenino
+		bl puts
+		ldr r0,=instruccion
 		bl puts
 		ldr r0,=palDes2
 		bl puts
 		
-		ldr r0,=
-		ldr r1,=recibido
-		bl scanf
-		ldr r10,= palabra2
-		b comparar
-
-	comparar:
+		ldr r4,= palabra2
+		ldr r5,=largo2
+		ldr r5,[r5]
 		
-
-
-
-	b jugador
-
-	jugador:
-		cmp r5,#0
-		beq puntuacion1
-		b puntuacion2
-
-	puntuacion1:
-
-		cmp r7,#1
-		addeq r8,r8,#1
-		b ganador
-
-	puntuacion2:
-		cmp r7,#1
-		addeq r9,r9,#1
-		b ganador
-
-	ganador:
-		cmp r5,#0
-		cmpeq r8, #3
-		beq mensaje1
-
-		cmp r5,#1
-		cmpeq r9,#3
-		beq mensaje2
-
-		b random
-
-	mensaje1:
-
-		ldr r0,=ganador1
+		b lectura
+	
+	conjunto3:
+	
+		add r10, r10, #1
+		ldr r0,=bart
 		bl puts
-		b salir
-
-	mensaje2:
-
-		ldr r0,=ganador2
+		ldr r0,=lisa
 		bl puts
-		b salir
+		ldr r0,=instruccion
+		bl puts
+		ldr r0,=palDes3
+		bl puts
+		
+		ldr r4,= palabra3
+		ldr r5,=largo3
+		ldr r5,[r5]
+		
+		b lectura
+		
+	conjunto4:
+	
+		add r10, r10, #1
+		ldr r0,=corona
+		bl puts
+		ldr r0,=virus
+		bl puts
+		ldr r0,=instruccion
+		bl puts
+		ldr r0,=palDes4
+		bl puts
+		
+		ldr r4,= palabra4
+		ldr r5,=largo4
+		ldr r5,[r5]
+		
+		b lectura
+	
+	conjunto5:
+		add r10, r10, #1
+		ldr r0,=snoopy
+		bl puts
+		ldr r0,=yellowBird
+		bl puts
+		ldr r0,=instruccion
+		bl puts
+		ldr r0,=palDes5
+		bl puts
+		
+		ldr r4,= palabra5
+		ldr r5,=largo5
+		ldr r5,[r5]
+		
+		b lectura
+	
+	conjunto6:
+		add r10, r10, #1
+		ldr r0,=manzana
+		bl puts
+		ldr r0,=bananas
+		bl puts
+		ldr r0,=instruccion
+		bl puts
+		ldr r0,=palDes6
+		bl puts
+		
+		ldr r4,= palabra6
+		ldr r5,=largo6
+		ldr r5,[r5]
+		
+		b lectura
 
+	
+	
+	lectura:
+		mov r7, #3
+		mov r0, #0
+		mov r2, #30
+		ldr r1, =recibido
+		swi 0
+		
+		ldr r6,=recibido
+		
+		b comparar
+	
+	comparar:
+
+		ldrb r7, [r4], #1
+		ldrb r8, [r6], #1
+		
+		sub r5, r5, #1
+
+		cmp r5, #0
+		beq acertado
+		
+		cmp r7,r8
+		beq comparar
+		bne fallo
+	
+	acertado:
+		ldr r0,=acierto
+		bl puts
+		add r11, r11, #1
+		cmp r11, #3
+		beq salir
+		b menu
+		
+	fallo:
+		ldr r0,=desacierto
+		bl puts
+		b menu
+		
 	salir:
+		ldr r0,=ganador
+		bl puts
 		
 		mov r0, #0
 		mov r3, #0
 		
 		ldmfd sp!,{lr}
 		bx lr
-
-
+		
 
 .data
 .align 2
@@ -161,174 +228,90 @@ cmp r12, #10
 @ VARIABLES
 
 puntajeP1: 			.word 0
-puntajeP2			.word 0
-cantPalablas:			.word 11
-recibido:			.asciz”                                                  ”
+puntajeP2:			.word 0
+cantPalablas:		.word 11
+recibido:			.string "                               "
 
 @ MENSAJES
 
-titulo:				.asciz “****************1 Palabra 2 Imagenes****************”
-bienvenida:			.asciz “Bienvenido!”
-acierto:			.asciz “CORRECTO! Cargando nuevas imagenes…”
-desacierto:			.asciz “INCORRECTO! Cargando nuevas imagenes…”
-player1:			.asciz “>Player1- Adivine la palabra: “
-player2:			.asciz “>Player2- Adivine la palabra: “
-ganador:			.asciz “Has ganado!”
+titulo:				.asciz "****************1 Palabra 2 Imagenes****************"
+bienvenida:			.asciz "Bienvenido!"
+instruccion:		.asciz "Con ayuda de las imagenes, ordena la siguiente palabra:\n"
+acierto:			.asciz "CORRECTO! Cargando nuevas imagenes…"
+desacierto:			.asciz "INCORRECTO! Cargando nuevas imagenes…"
+player1:			.asciz ">Player1- Adivine la palabra: "
+player2:			.asciz ">Player2- Adivine la palabra: "
+ganador:			.asciz "Has ganado!"
 
 @ PALABRAS DESORDENADAS
 
-palDes0:			.word “saotmasc”
-palDes1:			.word “almeaocn”
-palDes2:			.word “eeonrg”
-palDes3:			.word “ponsmsi”
-palDes4:
-palDes5:
-palDes6:
-palDes7:
-palDes8:
-palDes9:
-palDes10:
+palDes0:			.asciz "saotmasc"
+palDes1:			.asciz "almeaocn"
+palDes2:			.asciz "eeonrg"
+palDes3:			.asciz "ponsmsi"
+palDes4:			.asciz "vciorrounsa"
+palDes5:			.asciz "tspunea"
+palDes6:			.asciz "trsafu"
+palDes7:			.asciz "arb"
+palDes8:			.asciz "divdana"
+palDes9:			.asciz "uoincgraad"
+palDes10:			.asciz "lowelenah"
 
-@ PALABRAS ORDENADAS ARREY DE CHARS
+@ PALABRAS ORDENADAS
 
-palabra0:			.byte ‘m’,’a’,’s’,’c’,’o’,’t’,’a’,’s’
-palabra1:			.byte ‘c’,’a’,’m’,’a’,’l’,’e’,’o’,’n’
-palabra2:			.byte ‘g’,’e’,’n’,’e’,’r’,’o’
-palabra3:			.byte ‘s’,’i’,’m’,’p’,’s’,’o’,’n
-palabra4:			.byte ‘c’,’o’,’r’,’o’,’n’,’a’,’v’,’i’,’r’,’u’,’s’
-palabra5:			.byte ‘p’,’e’,’a’,’n’,’u’,’t’,’s’
-palabra6:			.byte ‘f’,’r’,’u’,’t’,’a’,’s’
-palabra7:			.byte ‘b’,’a’,’r’
-palabra8:			.byte ‘n’,’a’,’v’,’i’,’d’,’a’,’d’
-palabra9:			.byte ‘g’,’r’,’a’,’d’,’u’,’a’,’c’,’i’,’o’,’n’
-palabra10:			.byte ‘h’,’a’,’l’,’l’,’o’,’w’,’e’,’e’,’n’
+palabra0:			.string "mascotas"
+palabra1:			.string "camaleon"
+palabra2:			.string "genero"
+palabra3:			.string "simpson"
+palabra4:			.string "coronavirus"
+palabra5:			.string "peanuts"
+palabra6:			.string "frutas"
+palabra7:			.string "bar"
+palabra8:			.asciz "navidad"
+palabra9:			.asciz "graduacion"
+palabra10:			.asciz "halloween"
+
+@ LARGO PALABRAS
+largo0:				.word 8
+largo1:				.word 8
+largo2:				.word 6
+largo3:				.word 7
+largo4:				.word 11
+largo5:				.word 7
+largo6:				.word 6
+largo7:				.word 3
+largo8:				.word 7
+largo9:				.word 10
+largo10:			.word 9
 
 
 
 @ IMAGENES
-cama:				.asciz “     ()___
-\n  ()//__/)_________________()\n   ||(___)//#/_/#/_/#/_/#()/||\n||----|#| |#|_|#|_|#|_|| ||
-\n   ||____|_|#|_|#|_|#|_|#||/||\njgs ||    |#|_|#|_|#|_|#|_||
-”
-leon:				.asciz”     /";;:;;"\                    \n   (:;/\,-,/\;;)                  \n   (:;{  d b  }:;)                  \n (:;\__Y__/;;)-----------,,_
-  \n    ,..\  ,..\      ___/___)__`\\nldb (,,,)~(,,,)`-._##____________)
-”
-gato:				.asciz “|\---/|
-\n| o_o |
-\n \_^_/\n”
-perro:				.asciz “     __
-\n(___() ‘`;
-\n/,     /`
-\n\\´´--\\\n”
-masculino:			.asciz “  _
-\n _/`
-\n(_)\n”
-femenino:			.asciz “ _
-\n(_)
-\n +\n”
-bart:				.asciz “ |\/\/\/|
-\n |      |
-\n |      |
-\n | (o)(o)
-\n C      _)
-\n  | ,___|
-\n  |   /
-\n /____\
-\n/      \\n”
-lisa:				.asciz “/\ /\  /\
-\n| V  \/  \---.
-\n \_        /
-\n  (o)(o)  <__.
-\n _C         /
-\n/____,   )  \
-\n  \     /----’
-\n   ooooo
-\n  /     \\n”
-corona:			.asciz “  +
-\nqoOop
-\n(===)
-\n’’’’’”
-virus:				.asciz “  ,-^-.
-\n  |\/\|
-\n  `-V-’
-\n    H
-\n .-;”:-.
-\n,’|  `; \”
-yellowBird:			.asciz “  \,`/ /
-\n _)..  `_
-\n( __  -\
-\n    ‘`.
-\n   ( \>_-_,
-\n   _||_~-/”
-snoopy:			.asciz “  ,-~~-.___.
-\n / |  ‘     \
-\n(  )         0
-\n \_/-, ,....’
-\n    ====”
-manzana:			.asciz “  ,--./,-.
-\n / #      \
-\n|          |
-\n \        /
-\n  `._,._,’”
-bananas:			.asciz “   _
-\n _ \’-_,#
-\n_\’--’,’`|
-\n\`---`  /
-\n `----’`”
-vino:				.asciz “ _____
-\n/.---.\
-\n|`````|
-\n\     /
-\n `-.-’
-\n   |
-\n __|__”
-cerveza:			.asciz “.~~~~.
-\ni====i_
-\n|cccc|_)
-\n|cccc|
-\n`-==-’”
-mania:				.asciz “ ,+.
-\n((|))
-\n )|(
-\n((|))
-\n `-’”
-almendra:			.asciz “ ,+.
-\n//|\\
-\n|||||
-\n\\|//
-\n `+’”
-pino:				.asciz “    \|/
-\n   --0--
-\n    /|\
-\n   //|\\
-\n  ///|\\\
-\n ////|\\\\
-\n/////|\\\\\
-\n0 0 ||| 0 0
-\n  __|||__”
-jengibre:			.asciz “   ,-.
-\n _(*_*)_
-\n(_  o  _)
-\n  / o \
-\n (_/ \_)”
-birrete:				.asciz “  ,-‘’-.
-\n,‘  .----.
-\n`.     ,’ )
-\n |`-.-’| #
-\n  `---’”
-diploma:			.asciz “ _________
-\n(@)__))___)
-\n     \\
-\n      ^”
-luna:				.asciz “  ((((
-\n (((
-\n(((
-\n(((
-\n (((
-\n  ((((“
-calabaza:			.asciz “      \\
-\n .-’```^```’-.
-\n/   /\ __ /\  \
-\n|   ^^ \/ ^^  |
-\n\   \_.__._/  /
-\n `’-.......-’`”
+cama:				.asciz "     ()___\n  ()//__/)_________________()\n   ||(___)//#/_/#/_/#/_/#()/||\n||----|#| |#|_|#|_|#|_|| ||\n   ||____|_|#|_|#|_|#|_|#||/||\njgs ||    |#|_|#|_|#|_|#|_|| "
+
+leon:				.asciz "     / ;;:;; \\n   (:;/\,-,/\;;)\n   (:;{  d b  }:;)\n (:;\__Y__/;;)-----------,,_\n    ,..\  ,..\      ___/___)__`\\nldb (,,,)~(,,,)`-._##____________) "
+
+gato:				.asciz "|\---/|\n| o_o |\n  \_^_/\n"
+perro:				.asciz "     __\n(___() ‘`;\n/,     /`\n\\´´--\\\n"
+masculino:			.asciz "  _\n _/`\n(_)\n"
+femenino:			.asciz " _\n(_)\n +\n"
+bart:				.asciz " |\/\/\/|\n |      |\n |      |\n | (o)(o)\n\n  | ,___|\n\n /____\\n/      \\n"
+lisa:				.asciz "/\ /\  /\\n| V  \/  \---.\n \_        /\n  (o)(o)  <__.\n _C         /\n/____,   )  \\n\n   ooooo\n  /     \\n"
+corona:				.asciz "  +\nqoOop\n\n’’’’’"
+virus:				.asciz "  ,-^-.\n  |\/\|\n\n    H\n\n,’|  `; \ "
+yellowBird:			.asciz "  \,`/ /\n _)..  `_\n( __  -\\n    ‘`.\n   ( \>_-_,\n   _||_~-/ "
+snoopy:				.asciz "  ,-~~-.___.\n / |  ‘     \\n(  )         0\n \_/-, ,....’\n    ==== "
+manzana:			.asciz "  ,--./,-.\n / #      \\n\n \        /\n  `._,._,’ "
+bananas:			.asciz "   _\n _ \’-_,#\n_\’--’,’`|\n\`---`  /\n `----’`"
+vino:				.asciz " _____\n/.---.\\n|`````|\n\     /\n `-.-’\n   |\n __|__ "
+cerveza:			.asciz ".~~~~.\ni====i_\n|cccc|_)\n|cccc|\n`-==-’"
+mania:				.asciz " ,+.\n((|))\n )|(\n((|))\n `-’"
+almendra:			.asciz " ,+.\n//|\\\n|||||\n\\|//\n `+’ "
+pino:				.asciz "    \|/\n   --0--\n    /|\\n   //|\\\n  ///|\\\\n ////|\\\\\n/////|\\\\\\n0 0 ||| 0 0\n  __|||__ "
+jengibre:			.asciz "   ,-.\n _(*_*)_\n\n  / o \\n (_/ \_)"
+birrete:			.asciz "  ,-‘’-.\n,‘  .----.\n`.     ,’ )\n |`-.-’| #\n  `---’"
+diploma:			.asciz " _________\n(@)__))___)\n     \\\n      ^"
+luna:				.asciz "  ((((\n (((\n(((\n(((\n (((\n  (((("
+calabaza:			.asciz "      \\\n .-’```^```’-.\n/   /\ __ /\  \\n|   ^^ \/ ^^  |\n\   \_.__._/  /\n `’-.......-’`"
+
+
